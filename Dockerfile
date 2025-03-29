@@ -20,7 +20,9 @@ WORKDIR /usr/src/app
 
 # Copia o package.json pois o container precisa saber quais sao as dependencias
 # O ponto final indica que o arquivo sera copiado para WORKDIR
-COPY package.json ./
+# Copiar arquivos e pastas em partes separadas para aproveitar o cache do docker
+COPY package.json yarn.lock .yarnrc.yml ./
+COPY .yarn ./.yarn
 
 # Executa o comando yarn para instalar as dependencias necessarias
 RUN yarn
@@ -30,7 +32,7 @@ COPY . .
 
 RUN yarn run build
 
-# Obrigatorio expor uma porta qualquer para o container (3000 porta padrao)
+# Obrigatorio expor uma porta qualquer˝ para o container (3000 porta padrao)
 EXPOSE 3000
 
 # Comando que sera executado quando se iniciar o container
