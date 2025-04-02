@@ -1,0 +1,33 @@
+# o . no final do comando indica que o comando sera executado no WORKDIR
+# docker build -t api . -> cria a imagem
+# docker run -p 3000:3000 api -> roda a imagem
+# -p -> mapeia a porta do container para a porta do host
+# --rm -> remove o container apos a execucao
+# -d -> roda o container em background
+# -it -> roda o container em modo interativo
+# -v -> mapeia um volume
+# -e -> passa variaveis de ambiente
+# --name -> da um nome ao container
+# docker exec -it <nome_container> bash -> entra no container
+# docker stop <nome_container> -> para o container
+# docker ps -> lista os containers em execucao
+# docker ps -a -> lista todos os containers
+# docker images -> lista as imagens
+# docker rmi <nome_imagem> -> remove a imagem
+# docker rm <nome_container> -> remove o container
+# docker logs <nome_container> -> mostra os logs do container
+# docker inspect <nome_container> -> mostra informacoes do container
+# docker image inspect <nome_api> -> mostra informacoes da imagem
+# docker image tag <nome_api> <nome_api>:<tag> -> cria uma tag para a imagem
+# docker image push <nome_api>:<tag> -> envia a imagem para o docker hub
+# docker image pull <nome_api>:<tag> -> baixa a imagem do docker hub
+# docker image history <nome_api> -> mostra o historico de criacao da imagem
+
+
+Redes e Volumes -> bridge = Padrao / host = Entrega todas as interfaces disponiveis / none = Nao tem conexao com redes externas, apenas o localhost
+# docker network ls -> Tras informacoes referentes a redes disponiveis no Docker
+NETWORK ID: Identificador único da rede.
+NAME: Nome da rede.
+DRIVER: Tipo de driver usado para a rede (ex.: bridge, host, overlay).
+SCOPE: Escopo da rede (ex.: local, global).
+

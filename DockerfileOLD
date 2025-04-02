@@ -1,0 +1,54 @@
+# 
+
+# cada pacote do docker hub tras varias imagens como dependencias por baixo dos panos
+# filtrando por node:18-slim ele traz uma imagem com menos dependencias, sendo mais leves
+# O Docker file aponta por padrao para o Docker Hub
+
+# Instrucoes do dockerfile
+# FROM: indica qual imagem base sera utilizada
+# WORKDIR: indica qual sera o diretorio de trabalho
+# COPY: copia arquivos do host para o container
+# RUN: executa comandos no terminal do container
+# EXPOSE: expoe uma porta do container
+# CMD: executa um comando ao iniciar o container
+
+FROM node:20-alpine3.21
+
+# é necessario definir o diretorio de trabalho pois se nao definir ele cria na raiz
+# Caso nao exista ele cria o diretorio
+WORKDIR /usr/src/app
+
+# Copia o package.json pois o container precisa saber quais sao as dependencias
+# O ponto final indica que o arquivo sera copiado para WORKDIR
+# Copiar arquivos e pastas em partes separadas para aproveitar o cache do docker
+COPY package.json yarn.lock .yarnrc.yml ./
+COPY .yarn ./.yarn
+
+# Executa o comando yarn para instalar as dependencias necessarias
+RUN yarn
+
+# Copia o restante dos arquivos para o WORKDIR. O . indica que todos os arquivos serao copiados
+COPY . .
+
+RUN yarn run build
+
+# Obrigatorio expor uma porta qualquer˝ para o container (3000 porta padrao)
+EXPOSE 3000
+
+# Comando que sera executado quando se iniciar o container
+CMD ["yarn","run", "start"]
+
+# Use a Node.js base image
+#FROM node:16
+# Set the working directory inside the container
+#WORKDIR /app
+# Copy package.json and package-lock.json
+#COPY package*.json ./
+# Install dependencies
+#RUN npm install
+# Copy the application source code
+#COPY . .
+# Expose the application port
+#EXPOSE 3000
+# Start the application
+#CMD ["npm", "start"]
