@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /usr/src/app
+    volumes:
+      - volume-nginx:/usr/share/nginx/html
+    networks:
+      - nginx-network
+    ports:
+      - "3000:80"
+    depends_on:
+      - nginx
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - volume-nginx:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - nginx-network
+    ports:
+      - "80:80"
+
+volumes:
+  volume-nginx:
+
+networks:
+  nginx-network:
+    driver: bridge
