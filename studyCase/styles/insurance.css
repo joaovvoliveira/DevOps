@@ -1,0 +1,278 @@
+@import url("./root.css");
+@import url("./reset.css");
+
+body {
+  background-color: var(--black);
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  & .bik-header {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    /* background-color: aquamarine; */
+    & .bik-header-img {
+      height: 40px;
+      margin: 40px 0;
+    }
+
+    & .header-list {
+      & ul {
+        display: flex;
+        padding: 40px;
+        gap: 50px;
+        list-style: none;
+        font-size: 1.25em;
+        align-content: center;
+        & li a {
+          text-decoration: none;
+          color: var(--white);
+        }
+      }
+    }
+  }
+
+  & .bik-insurance-page {
+    background-color: #212121;
+
+    & .container {
+      max-width: 1200px;
+      margin: 0 auto;
+
+      & .bik-insurance-title {
+        & p {
+          font-size: 2em;
+          padding: 40px 0 20px;
+          text-transform: uppercase;
+          color: var(--white);
+        }
+        & h2 {
+          color: var(--white);
+          font-size: 4em;
+          & b {
+            color: var(--yellow);
+          }
+        }
+      }
+      & .bg {
+        padding-bottom: 30px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        & .bik-insurance-price {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          background-color: var(--black);
+          padding: 40px;
+          color: var(--white);
+          & h3 {
+            font-size: 3em;
+          }
+
+          & span {
+            font-size: 1.5em;
+            display: block;
+          }
+
+          & span::before {
+            content: "€ 199,00";
+            display: block;
+          }
+
+          & span::after {
+            content: "Monthly";
+            font-size: 0.75em;
+            margin-top: -15px;
+          }
+
+          & h3,
+          ul,
+          a {
+            grid-column: 1;
+          }
+          & span {
+            grid-column: 2;
+            text-align: right;
+            padding: 10px;
+            grid-auto-flow: row dense;
+          }
+          & ul {
+            list-style: none;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            grid-row: 2;
+            padding: 0;
+            position: relative;
+            gap: 15px;
+            padding: 15px 0;
+            & li {
+              font-size: 1.25em;
+              display: flex;
+              align-items: center;
+              position: relative;
+            }
+            & li::before {
+              content: "";
+              display: inline-block;
+              width: 13px;
+              height: 9px;
+              background-image: url(../img/icones/lista.svg);
+              background-repeat: no-repeat;
+              position: absolute;
+              left: -21px;
+            }
+          }
+
+          & a {
+            text-decoration: none;
+            padding: 12px 20px;
+            background-color: var(--yellow);
+            text-align: center;
+            font-size: 1.5em;
+            border-radius: 5px;
+            color: var(--black);
+            /* display: block; */
+          }
+        }
+        .gold {
+          color: var(--yellow);
+        }
+      }
+    }
+  }
+
+  & .advantages {
+    max-width: 1200px;
+    margin: 50px auto;
+
+    & .advantage-title {
+      font-size: 3.25em;
+      color: var(--white);
+      padding-bottom: 40px;
+
+      & b {
+        color: var(--yellow);
+      }
+    }
+
+    & .advantage-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+
+      & .advantage-item {
+        display: flex;
+        flex-direction: column;
+        color: var(--white);
+        gap: 10px;
+
+        & img {
+          width: 40px;
+        }
+
+        & span {
+          font-size: 1.75em;
+        }
+
+        & p {
+          font-size: 1.25em;
+        }
+      }
+    }
+  }
+
+  & .faq {
+    background-color: var(--white);
+
+    padding-bottom: 40px;
+
+    & .faq-bg {
+      max-width: 1200px;
+      margin: 0 auto;
+
+      & .faq-title {
+        font-size: 3em;
+        color: var(--black);
+        padding: 40px 0;
+
+        & b {
+          color: var(--yellow);
+        }
+      }
+
+      & .faq-list {
+        display: grid;
+        list-style: none;
+        padding: 0;
+
+        & .faq-item {
+          display: grid;
+          grid-template-columns: auto 1fr;
+          gap: 10px;
+          padding: 15px;
+          position: relative;
+
+          & .faq-detail {
+            width: 15px;
+            height: 10px;
+            background-color: var(--yellow);
+            grid-column: 1;
+            align-self: center;
+          }
+
+          & .faq-desc {
+            grid-column: 2;
+          }
+
+          & span {
+            font-size: 1.5em;
+            font-weight: 800;
+          }
+
+          & p {
+            font-size: 1em;
+            grid-column: 2;
+          }
+        }
+
+        & .faq-item:nth-child(odd) {
+          background-color: rgb(208, 208, 208);
+        }
+      }
+    }
+  }
+
+  & .bik-foot {
+    margin: 0 auto;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    color: var(--grey);
+    padding: 30px 0;
+
+    & img {
+      width: 160px;
+    }
+
+    & .footer-contact,
+    .footer-info {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      & h3 {
+        font-size: 2em;
+      }
+
+      & p {
+        font-size: 1.25em;
+        & a {
+          text-decoration: none;
+          color: var(--grey);
+        }
+      }
+    }
+  }
+}
