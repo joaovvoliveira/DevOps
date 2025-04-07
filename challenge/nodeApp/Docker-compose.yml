@@ -1,0 +1,51 @@
+# This is a Docker Compose file for a Node.js application with a MySQL database.
+# Version means the version of the Docker Compose file format.
+# The version number is used to determine which features are available in the file.
+version: '3.7'
+
+# Services define the different containers that will be run.
+# Each service can be thought of as a separate 
+# application or component.
+services:
+  mysql:
+    image: mysql:8
+    container_name: container_mysql
+    restart: always
+    volumes:
+      - first-volume:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    
+    # Environment variables for MySQL
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    networks:
+      - first-network
+    # Healthcheck to ensure MySQL is ready before starting the app
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      retries: 3
+      start_period: 10s
+      timeout: 5s
+    
+  apinode:
+    build:
+      context: .
+    container_name: container_apinode
+    ports:
+      - "3000:3000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - first-network
+    
+networks: 
+  first-network:
+    driver: bridge
+volumes:
+  first-volume:
