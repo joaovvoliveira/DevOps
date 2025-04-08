@@ -1,4 +1,4 @@
 data "aws_s3_bucket" "bucket" {
-  bucket = "rocketseat-bucket-iac-${terraform.workspace}373563"
+  bucket = "${var.org_name}-bucket-iac-${terraform.workspace}373563"
 }
 

@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "s3_bucket" {
-  bucket = "rocketseat-bucket-iac-${terraform.workspace}373563"
+  bucket = "${var.org_name}-bucket-iac-${terraform.workspace}373563"
 
   tags = {
     Name        = "First-bucket"
@@ -16,7 +16,7 @@ resource "aws_s3_bucket" "s3_bucket" {
 module "ec2_instance" {
   source                 = "terraform-aws-modules/ec2-instance/aws"
   version = "~> 5.0"
-  name                   = "${terraform.workspace}-instance"
+  name                   = "${var.org_name}-${terraform.workspace}-instance"
   instance_type          = "t2.micro"
   key_name               = "victor-key"
   monitoring             = true
