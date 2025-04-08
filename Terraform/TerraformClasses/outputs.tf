@@ -1,17 +1,11 @@
-# output "bucket_domain_name" {
-#   value       = data.aws_s3_bucket.bucket.bucket_domain_name
-#   description = "Domain name of the bucket"
-#   sensitive   = false
-# }
+output "s3_bucket_name" {
+  value       = module.s3.bucket_domain_name
+  description = "Domain name of the bucket"
+  sensitive   = false
+}
 
-# output "bucket_region" {
-#   value       = data.aws_s3_bucket.bucket.region
-#   description = "Region of the bucket"
-#   sensitive   = false
-# }
-
-# output "id" {
-#   value       = data.aws_s3_bucket.bucket.id
-#   description = "ID of the bucket"
-#   sensitive   = false
-# }
+output "cdn_domain" {
+  value       = module.cloudfront.cdn_domain_name
+  description = "Domain name of the CloudFront distribution"
+  sensitive   = false
+}

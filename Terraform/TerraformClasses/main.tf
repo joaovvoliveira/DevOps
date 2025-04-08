@@ -37,6 +37,16 @@ module "ec2" {
 
 }
 
+module "sqs" {
+  source     = "terraform-aws-modules/sqs/aws"
+  name       = "example"
+  create_dlq = true
+
+  tags = {
+    Iac = true
+  }
+}
+
 # resource "aws_s3_bucket" "s3_bucket" {
 #   bucket = "${var.org_name}-bucket-iac-${terraform.workspace}373563"
 
