@@ -3,3 +3,9 @@ variable "org_name" {
   type        = string
   default     = "rocketseat"
 }
+
+variable "state_bucket" {
+  description = "bucket with State"
+  type        = string
+  default     = "rocketseat-state-bucket123513"
+}
