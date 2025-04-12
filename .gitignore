@@ -1,1 +1,6 @@
 .DS_Store
+*.tfstate
+*.tfstate.*
+*backup*
+./Terraform/TerraformClasses/.terraform1
+*.tfvars

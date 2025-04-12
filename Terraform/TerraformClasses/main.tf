@@ -45,6 +45,8 @@ module "sqs" {
   tags = {
     Iac = true
   }
+
+  depends_on = [ module.ec2 ]
 }
 
 # resource "aws_s3_bucket" "s3_bucket" {
