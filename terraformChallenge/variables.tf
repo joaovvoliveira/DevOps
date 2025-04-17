@@ -2,8 +2,10 @@ variable "region" {
   default = "us-east-1"
 }
 
-variable "vpc_name" {
-  default = "my-vpc"
+variable "bucket_name" {
+  description = "Name of the S3 bucket"
+  type        = string
+  default     = "my-vpc7645"
 }
 
 variable "cidr_block" {
@@ -21,4 +23,15 @@ variable "private_subnets" {
 
 variable "enable_nat_gateway" {
   default = true
+}
+
+
+variable "tags_s3" {
+  type        = map(string)
+  description = "Tags for S3 bucket"
+  default = {
+    "name" = "s3 bucket"
+    "env"  = "study"
+    "team" = "devops"
+  }
 }

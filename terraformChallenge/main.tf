@@ -1,20 +1,27 @@
-provider "aws" {
-  region  = var.region
-  profile = "victor"
+data "aws_availability_zones" "available" {}
+
+module "s3" {
+  source = "./Modules/s3"
+
+}
+
+module "ec2" {
+  source = "./Modules/ec2"
+
+  depends_on = [module.s3]
 }
 
 module "vpc" {
-  source             = "./modules/vpc"
-  vpc_name           = var.vpc_name
-  cidr_block         = var.cidr_block
-  public_subnets     = var.public_subnets
-  private_subnets    = var.private_subnets
-  enable_nat_gateway = true
-  azs                = data.aws_availability_zones.available.names
+  source     = "./Modules/vpc"
+  cidr_block = "10.0.0.0/16"
+
+  depends_on = [module.s3]
 }
 
-data "aws_availability_zones" "available" {}
-
-output "vpc_id" {
-  value = module.vpc.vpc_id
+module "subnet" {
+  source       = "./Modules/subnet"
+  vpc_id       = module.vpc.vpc_id
+  azs          = slice(data.aws_availability_zones.available.names, 0, 2)
+  subnet_cidrs = ["10.0.1.0/24", "10.0.2.0/24"]
+  depends_on   = [module.s3]
 }

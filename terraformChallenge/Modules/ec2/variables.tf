@@ -1,4 +1,4 @@
-variable "tags_vpc" {
+variable "tags_ec2" {
   type = map(string)
   default = {
     Terraform   = "true"
@@ -7,8 +7,4 @@ variable "tags_vpc" {
     Owner       = "Victor"
     Project     = "terraformChallenge"
   }
-}
-
-variable "cidr_block" {
-    type = string
 }
